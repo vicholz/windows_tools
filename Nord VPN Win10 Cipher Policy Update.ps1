@@ -1,0 +1,2 @@
+﻿Set-VpnConnectionIPsecConfiguration -ConnectionName "NORD US8830" -AuthenticationTransformConstants SHA256128 -CipherTransformConstants AES128 -DHGroup Group14 -EncryptionMethod AES128 -IntegrityCheckMethod SHA256 -PFSgroup PFS2048 -Force
+Set-VpnConnectionIPsecConfiguration -ConnectionName "NORD US8841" -AuthenticationTransformConstants SHA256128 -CipherTransformConstants AES128 -DHGroup Group14 -EncryptionMethod AES128 -IntegrityCheckMethod SHA256 -PFSgroup PFS2048 -Force

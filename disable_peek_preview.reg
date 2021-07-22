@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"DisablePreviewDesktop"=dword:00000001
+
+[HKCU\SOFTWARE\Microsoft\Windows\DWM]
+"EnableAeroPeek"=dword:00000000

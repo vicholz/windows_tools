@@ -25,6 +25,7 @@
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
                 <FullName>User</FullName>
+                <Group>Administrators</Group>
                 <Organization></Organization>
             </UserData>
         </component>

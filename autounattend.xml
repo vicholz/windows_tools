@@ -33,42 +33,17 @@
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Cortana</Description>
                     <Order>1</Order>
-                    <Path>reg.exe add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE /v DisableVoice /t REG_DWORD /d 1</Path>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Description>Add Lab Config Key</Description>
-                    <Order>2</Order>
-                    <Path>reg.exe add HKLM\SYSTEM\Setup\MoSetup /v AllowUpgradesWithUnsupportedTPMOrCPU /t REG_DWORD /d 1</Path>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Description>Add Lab Config Key</Description>
-                    <Order>3</Order>
-                    <Path>reg.exe add HKLM\SYSTEM\Setup\LabConfig</Path>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Description>Bypass TPM Check</Description>
-                    <Order>4</Order>
-                    <Path>reg.exe add HKLM\SYSTEM\Setup\LabConfig /v BypassTPMCheck /t REG_DWORD /d 1</Path>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Description>Bypass RAM Check</Description>
-                    <Order>5</Order>
-                    <Path>reg.exe add HKLM\SYSTEM\Setup\LabConfig /v BypassRAMCheck /t REG_DWORD /d 1</Path>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Description>Bypass Secure Boot Check</Description>
-                    <Order>6</Order>
-                    <Path>reg.exe add HKLM\SYSTEM\Setup\LabConfig /v BypassSecureBootCheck /t REG_DWORD /d 1</Path>
+                    <Path>reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v DisableVoice /t REG_DWORD /d 1</Path>
                 </RunSynchronousCommand>
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Lock Screen</Description>
                     <Order>7</Order>
-                    <Path>reg.exe add HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization /v NoLockScreen /t REG_DWORD /d 1</Path>
+                    <Path>reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreen /t REG_DWORD /d 1</Path>
                 </RunSynchronousCommand>
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Lock Screen</Description>
                     <Order>8</Order>
-                    <Path>reg.exe add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowSecondsInSystemClock /t REG_DWORD /d 1</Path>
+                    <Path>reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1</Path>
                 </RunSynchronousCommand>
             </RunSynchronous>
         </component>
@@ -144,7 +119,7 @@
                         </Password>
                         <Description></Description>
                         <DisplayName>User</DisplayName>
-                        <Group>Users</Group>
+                        <Group>Administrators;Power Users</Group>
                         <Name>User</Name>
                     </LocalAccount>
                 </LocalAccounts>

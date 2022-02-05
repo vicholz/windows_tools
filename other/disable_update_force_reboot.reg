@@ -2,4 +2,3 @@
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
 "AUOptions"=dword:00000003
-

@@ -1,6 +1,0 @@
-﻿Windows Registry Editor Version 5.00
-
-; Allow Windows 11 upgrade on any machine even if it doesn't meet requirements.
-
-[HKEY_LOCAL_MACHINE\SYSTEM\Setup\MoSetup]
-"AllowUpgradesWithUnsupportedTPMOrCPU"=dword:00000001

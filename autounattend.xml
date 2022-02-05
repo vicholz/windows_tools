@@ -112,17 +112,17 @@
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Cortana</Description>
                     <Order>1</Order>
-                    <Path>CMD /c REG add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v DisableVoice /t REG_DWORD /d 1</Path>
+                    <CommandLine>CMD /c REG add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v DisableVoice /t REG_DWORD /d 1</CommandLine>
                 </RunSynchronousCommand>
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Lock Screen</Description>
                     <Order>2</Order>
-                    <Path>CMD /c REG add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreen /t REG_DWORD /d 1</Path>
+                    <CommandLine>CMD /c REG add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreen /t REG_DWORD /d 1</CommandLine>
                 </RunSynchronousCommand>
                 <RunSynchronousCommand wcm:action="add">
                     <Description>Disable Lock Screen</Description>
                     <Order>3</Order>
-                    <Path>CMD /c REG add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1</Path>
+                    <CommandLine>CMD /c REG add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1</CommandLine>
                 </RunSynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Description>Control Panel View</Description>

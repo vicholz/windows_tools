@@ -2,11 +2,10 @@
 echo.
 echo Importing Registry Configs...
 reg import clock_show_seconds.reg
-reg import disable_lock_screen.reg
-reg import lockscreen_disable_background.reg
+reg import lockscreen_disable.reg
 reg import HKCUCSB_folder_settings.reg
 reg import HKCUSB_folder_settings.reg
-reg import enable_uac.reg
+reg import uac_enable.reg
 echo Importing Registry Configs...DONE!
 echo.
 echo Copying ls/ll command shortcuts...

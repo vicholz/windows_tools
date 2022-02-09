@@ -4,7 +4,9 @@ echo Importing Registry Configs...
 reg import clock_show_seconds.reg
 reg import disable_lock_screen.reg
 reg import lockscreen_disable_background.reg
-enable_uac.bat
+reg import HKCUCSB_folder_settings.reg
+reg import HKCUSB_folder_settings.reg
+reg import enable_uac.reg
 echo Importing Registry Configs...DONE!
 echo.
 echo Copying ls/ll command shortcuts...
@@ -13,5 +15,7 @@ copy /y ll.cmd c:\windows\
 echo Copying ls/ll command shortcuts...DONE!
 echo.
 echo DONE!
+echo.
+echo Press ENTER to reboot the machine or close this window to continue working.
 pause
-exit
+shutdown /r /f /now

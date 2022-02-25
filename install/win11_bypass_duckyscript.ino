@@ -1,3 +1,5 @@
+// See http://digistump.com/wiki/digispark/tutorials/connecting for setup info.
+
 #include "DigiKeyboard.h"
 #define KEY_TAB 0x2b
 

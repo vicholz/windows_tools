@@ -14,7 +14,7 @@
 ## [win11_req_bypass.bat](https://raw.githubusercontent.com/vicholz/windows_tools/main/install/win11_req_bypass.bat)
 
 1. Download the file.
-1. Copy to the installer USB drive.
+1. Copy the file to the root directory of your USB installer.
 1. Start the install.
 1. Once you see the start setup dialog press `SHIFT+F10` which will open a command prompt window.
 1. Type: `d: <ENTER>` NOTE: the drive letter for your USB installer may be different if there are multiple partitions/drives in the machine so try e, f, etc.

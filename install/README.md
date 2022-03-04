@@ -19,6 +19,6 @@
 1. Once you see the start setup dialog press `SHIFT+F10` which will open a command prompt window.
 1. Type: `d: <ENTER>` NOTE: the drive letter for your USB installer may be different if there are multiple partitions/drives in the machine so try e, f, etc.
 1. Type: `dir <ENTER>`
-1. You should the win11_req_bypass.bat file.
+1. You should see `win11_req_bypass.bat` in the list of files.
 1. Type: `win11_req_bypass.bat <ENTER>`
 1. Close the command prompt and continue the setup as usual.

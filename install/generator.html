@@ -1,0 +1,264 @@
+<html>
+    <head>
+        <title>GEN</title>
+        <script>
+            function copy(obj) {
+                var range = document.createRange();
+                var selection = window.getSelection();
+                range.selectNodeContents(obj);
+                selection.removeAllRanges();
+                selection.addRange(range);
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copy command was ' + msg);
+                } catch(err) {
+                    console.log('Oops, unable to copy');
+                }
+                window.getSelection().removeAllRanges();
+            }
+
+            function selectFade(obj){
+                var opacity = 1.0;
+                (function (){
+                    var fadeTimer = setInterval(function(){
+                        opacity -= 0.1;
+                        obj.style.backgroundColor = "rgba(0, 255, 0, " + opacity + ")";
+                        if (opacity <= 0) clearInterval(fadeTimer);
+                    },50);
+                })();
+            }
+
+            function generate(){
+                var UserData_ComputerName = document.querySelector("#UserData_ComputerName").value;
+                var UserData_FullName = document.querySelector("#UserData_FullName").value;
+                var UserData_Organization = document.querySelector("#UserData_Organization").value;
+                var UserData_ProductKey = document.querySelector("#UserData_ProductKey").value;
+                var UserData_RegisteredOwner = document.querySelector("#UserData_RegisteredOwner").value;
+                var UserData_RegisteredOrganization = document.querySelector("#UserData_RegisteredOrganization").value;
+                var TimeZone = document.querySelector("#TimeZone").value;
+                
+                var HideEULAPage = document.querySelector("#HideEULAPage").value;
+                var HideOEMRegistrationScreen = document.querySelector("#HideOEMRegistrationScreen").value;
+                var HideOnlineAccountScreens = document.querySelector("#HideOnlineAccountScreens").value;
+                var HideWirelessSetupInOOBE = document.querySelector("#HideWirelessSetupInOOBE").value;
+                var SkipUserOOBE = document.querySelector("#SkipUserOOBE").value;
+                var SkipMachineOOBE = document.querySelector("#SkipMachineOOBE").value;
+                var ProtectYourPC = document.querySelector("#ProtectYourPC").value;
+                var NetworkLocation = document.querySelector("#NetworkLocation").value;
+                
+                var AutoLogin_Enabled = document.querySelector("#AutoLogin_Enabled");
+                var AutoLogin_Username = document.querySelector("#AutoLogin_Username").value;
+                var AutoLogin_Password = document.querySelector("#AutoLogin_Password").value;
+
+                var AutoLogon = "";
+                if (AutoLogin_Enabled.options[AutoLogin_Enabled.selectedIndex].value === "true"){
+                    AutoLogon = `<AutoLogon>
+                <Password>
+                    <Value>${AutoLogin_Password}</Value>
+                    <PlainText>true</PlainText>
+                </Password>
+                <Enabled>true</Enabled>
+                <Username>${AutoLogin_Username}</Username>
+            </AutoLogon>`;
+                }
+                
+                var LocalAccounts = "";
+                var FirstLogonCommands = "";
+
+                var XML_TEMPLATE = `
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>en-US</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>0409:00000409</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserData>
+                <ProductKey>
+                    <!-- Do not uncomment the Key element if you are using trial ISOs -->
+                    <!-- You must uncomment the Key element (and optionally insert your own key) if you are using retail or volume license ISOs -->
+                    <Key>${UserData_ProductKey}</Key>
+                    <WillShowUI>Never</WillShowUI>
+                </ProductKey>
+                <AcceptEula>true</AcceptEula>
+                <FullName>${UserData_FullName}</FullName>
+                <Organization>${UserData_Organization}</Organization>
+            </UserData>
+        </component>
+    </settings>
+    <settings pass="offlineServicing">
+        <component name="Microsoft-Windows-LUA-Settings" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <EnableLUA>false</EnableLUA>
+        </component>
+    </settings>
+    <settings pass="generalize">
+        <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipRearm>1</SkipRearm>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>0409:00000409</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipAutoActivation>true</SkipAutoActivation>
+        </component>
+        <component name="Microsoft-Windows-SQMApi" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <CEIPEnabled>0</CEIPEnabled>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ComputerName>${UserData_ComputerName}</ComputerName>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            ${AutoLogon}
+            <OOBE>
+                <HideEULAPage>${HideEULAPage}</HideEULAPage>
+                <HideOEMRegistrationScreen>${HideOEMRegistrationScreen}</HideOEMRegistrationScreen>
+                <HideOnlineAccountScreens>${HideOnlineAccountScreens}</HideOnlineAccountScreens>
+                <HideWirelessSetupInOOBE>${HideWirelessSetupInOOBE}</HideWirelessSetupInOOBE>
+                <SkipUserOOBE>${SkipUserOOBE}</SkipUserOOBE>
+                <SkipMachineOOBE>${SkipMachineOOBE}</SkipMachineOOBE>
+                <ProtectYourPC>${ProtectYourPC}</ProtectYourPC>
+                <NetworkLocation>${NetworkLocation}</NetworkLocation>
+            </OOBE>
+            <UserAccounts>
+                <LocalAccounts>
+                    ${LocalAccounts}
+                </LocalAccounts>
+            </UserAccounts>
+            <RegisteredOrganization>${UserData_RegisteredOrganization}</RegisteredOrganization>
+            <RegisteredOwner>${UserData_RegisteredOwner}</RegisteredOwner>
+            <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
+            <FirstLogonCommands>
+                ${FirstLogonCommands}
+            </FirstLogonCommands>
+            <TimeZone>${TimeZone}</TimeZone>
+        </component>
+    </settings>
+</unattend>`;
+                document.querySelector("#OUTPUT").innerText = XML_TEMPLATE;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="options">
+            <div id="userdata">
+                <label for="UserData_ComputerName">Computer Name:</label><input type="text" id="UserData_ComputerName" name="UserData_ComputerName" value="NEW-PC"/><br>
+                <label for="UserData_FullName">Full Name:</label><input type="text" id="UserData_FullName" name="UserData_FullName" value="User"/><br>
+                <label for="UserData_Organization">Organization:</label><input type="text" id="UserData_Organization" name="UserData_Organization" value=""/><br>
+                <label for="UserData_ProductKey">Product Key:</label><input type="text" id="UserData_ProductKey" name="UserData_ProductKey" value=""/><br>
+                <label for="UserData_RegisteredOwner">Registered Owner:</label><input type="text" id="UserData_RegisteredOwner" name="UserData_RegisteredOwner" value="User"/><br>
+                <label for="UserData_RegisteredOrganization">Registered Organization:</label><input type="text" id="UserData_RegisteredOrganization" name="UserData_RegisteredOrganization" value=""/><br>
+                <label for="TimeZone">Timezone:</label>
+                <select id="TimeZone">
+                    <option value="Pacific Standard Time">Pacific Standard Time</option>
+                    <option value="Central Standard Time">Central Standard Time</option>
+                    <option value="Eastern Standard Time">Eastern Standard Time</option>
+                </select>
+            </div>
+            <hr>
+            <div id="oobe">
+                <label for="HideEULAPage">Hide EULA Page:</label>
+                <select id="HideEULAPage">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="HideOEMRegistrationScreen">Hide OEM Registration Screen:</label>
+                <select id="HideOEMRegistrationScreen">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="HideOnlineAccountScreens">Hide Online Account Screens:</label>
+                <select id="HideOnlineAccountScreens">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="HideWirelessSetupInOOBE">Hide Wireless Setup In OOBE:</label>
+                <select id="HideWirelessSetupInOOBE">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="SkipUserOOBE">Skip User OOBE:</label>
+                <select id="SkipUserOOBE">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="SkipMachineOOBE">Skip Machine OOBE:</label>
+                <select id="SkipMachineOOBE">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select><br>
+                <label for="ProtectYourPC">Protect Your PC:</label>
+                <select id="ProtectYourPC">
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                </select><br>
+                <label for="NetworkLocation">Network Location:</label>
+                <select id="NetworkLocation">
+                    <option value="Home">Home</option>
+                    <option value="Public">Public</option>
+                </select>
+            </div>
+            <hr>
+            <div id="autologin_options">
+                <label for="AutoLogin_Enabled">Enable AutoLogin?:</label>
+                <select id="AutoLogin_Enabled">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select>
+                <br>
+                <label for="AutoLogin_Username">Autologin Username:</label><input type="text" id="AutoLogin_Username" name="AutoLogin_Username" value="User"/><br>
+                <label for="AutoLogin_Password">Autologin Password:</label><input type="text" id="AutoLogin_Password" name="AutoLogin_Password" value=""/><br>
+            </div>
+            <hr>
+            <div id="UserAccounts">
+                
+            </div>
+            <hr>
+            <div id="FirstLogonCommands">
+                
+            </div>
+            <hr>
+            <div id="Generate">
+                <button id="generate" onclick="generate();">GENERATE</button>&NonBreakingSpace;<span>CLICK OUTPUT TO COPY</span>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <pre id="OUTPUT" onclick="copy(this);selectFade(this);">
+            </pre>
+        </div>
+    </body>
+</html>

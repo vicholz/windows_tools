@@ -1,7 +1,10 @@
 #!/usr/bin/env pwsh
 
+#$SOURCE_DRIVE = "c:"
 $SOURCE_DRIVE = "d:"
 $TARGET_DRIVE = $pwd.drive.name
+$FOLDER_PATH = ""
+#$FOLDER_PATH = $HOME
 $FOLDERS = "desktop", "documents", "music", "pictures", "videos"
 
 $ROBOCOPY_PARAMS = "/R:10 /S /Z /XO /FFT"
@@ -17,7 +20,7 @@ function backup {
     Param([array]$folder_list)
 
     foreach($folder in $folder_list) {
-        do_copy "$SOURCE_DRIVE/$folder" "$TARGET_DRIVE/$folder"
+        do_copy "$SOURCE_DRIVE\$FOLDER_PATH\$folder" "$TARGET_DRIVE\$FOLDER_PATH\$folder"
     }
 }
 
@@ -29,10 +32,11 @@ function check_source_target {
     }
 }
 
+check_source_target $SOURCE_DRIVE $TARGET_DRIVE
 Write-Output "################ BACKUP TOOL ################"
 Write-Output "This tool will backup the following folders:"
 foreach($folder in $FOLDERS) {
-    Write-Output "$SOURCE_DRIVE\$folder -> $TARGET_DRIVE\$folder"
+    Write-Output "$SOURCE_DRIVE\$FOLDER_PATH\$folder -> $TARGET_DRIVE\$FOLDER_PATH\$folder"
 }
 Write-Output ""
 Read-Host -Prompt "Press ENTER to continue or CTRL+C/close this window to exit" 

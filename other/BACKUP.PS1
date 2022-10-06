@@ -4,7 +4,7 @@ $SOURCE_DRIVE = "d:"
 $TARGET_DRIVE = $pwd.drive.name
 $FOLDERS = "desktop", "documents", "music", "pictures", "videos"
 
-$ROBOCOPY_PARAMS = "/Z"
+$ROBOCOPY_PARAMS = "/R:10 /S /Z /XO /FFT"
 
 function do_copy {
     Param([string]$source, [string]$target)

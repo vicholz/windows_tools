@@ -142,6 +142,12 @@
                     <CommandLine>CMD /c wmic useraccount where name="User" set PasswordExpires=false</CommandLine>
                     <Description>Password Never Expires</Description>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>7</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>CMD /c REG add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve</CommandLine>
+                    <Description>Enable Classic Explorer Context Menu</Description>
+                </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Pacific Standard Time</TimeZone>
         </component>

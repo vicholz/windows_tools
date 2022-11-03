@@ -1,5 +1,8 @@
 # Usage
 
+## Auto Unattend XML Generator
+1. [Simple autounattend.xml Generator](https://vicholz.github.io/viewhtml.html#https://raw.githubusercontent.com/vicholz/vicholz.github.io/main/simple_autounattend.html)
+
 ## [autounattend.xml](https://raw.githubusercontent.com/vicholz/windows_tools/main/install/autounattend.xml)
 
 1. Download the file.

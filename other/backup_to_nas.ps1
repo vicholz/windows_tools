@@ -16,7 +16,10 @@ $SOURCE_DIR_NAME = Split-Path -Path (Get-Location) -Leaf
 
 $TARGET_PATH = "$TARGET_PATH\$SOURCE_DIR_NAME"
 
-$ROBOCOPY_PARAMS = "/R:10 /W:10 /S /Z /XO /FFT /MT"
+$ROBOCOPY_CONFIG = "/R:3 /W:5 /S /Z /XO /FFT /MT /COMPRESS"
+$ROBOCOPY_EXCLUDES = "/XF '*.gdoc' '*.gsheets' '*.gslides' '*.gdraw'"
+$ROBOCOPY_LOG = "/TEE /LOG:backup.log"
+$ROBOCOPY_PARAMS = "$ROBOCOPY_CONFIG $ROBOCOPY_EXCLUDES $ROBOCOPY_LOG"
 
 function do_copy {
     Param([string]$source, [string]$target)

@@ -1,46 +1,71 @@
 #!/usr/bin/env pwsh
 
-#$SOURCE_DRIVE = "c:"
-$SOURCE_DRIVE = "d:"
+$HOSTNAME = "$env:COMPUTERNAME"
+$USERNAME = "$env:USERNAME"
+$BACKUP_PATH = "BACKUP\$HOSTNAME\$USERNAME"
 $TARGET_DRIVE = $pwd.drive.name
-$FOLDER_PATH = ""
-#$FOLDER_PATH = $HOME
-$FOLDERS = "desktop", "documents", "music", "pictures", "videos"
+$TARGET_PATH = "${TARGET_DRIVE}:\$BACKUP_PATH"
 
-$ROBOCOPY_PARAMS = "/R:10 /S /Z /XO /FFT"
+$SOURCE_FOLDERS = "MyDocuments", "MyPictures", "MyVideos", "MyMusic", "Desktop", "Downloads"
 
-function do_copy {
+$ROBOCOPY_CONFIG = "/R:3 /W:5 /S /Z /XO /FFT /MT /COMPRESS /ETA"
+$ROBOCOPY_EXCLUDES = "/XF '*.gdoc' '*.gsheets' '*.gslides' '*.gdraw'"
+$ROBOCOPY_LOG = "/TEE /LOG:backup.log"
+$ROBOCOPY_PARAMS = "${ROBOCOPY_CONFIG} ${ROBOCOPY_EXCLUDES} ${ROBOCOPY_LOG}"
+
+function confirm_continue {
+    Read-Host -Prompt "Press ENTER to continue or press CTRL+C, or close this window to exit"
+}
+
+function confirm_exit {
+    Read-Host -Prompt "Press ENTER, CTRL+C, or close this window to exit"
+    exit 0
+}
+
+function abort {
+    Write-Output "ABORTED!"
+    confirm_exit
+}
+
+function get_folder_path {
+    Param([string]$folder)
+    if ($folder -eq "Downloads") {
+       return (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
+    } else {
+        return [Environment]::GetFolderPath($folder)
+    }
+}
+
+function rcopy {
     Param([string]$source, [string]$target)
     Write-Output "Copying '$source' to '$target'..."
-    & "robocopy $source $target $ROBOCOPY_PARAMS"
-    Write-Output "Copying '$source' to '$target'...DONE!"
+    try {
+        Invoke-Expression "robocopy ${source} ${target} ${ROBOCOPY_PARAMS}"
+        Write-Output "Copying '$source' to '$target'...DONE!"
+    } catch {
+        Write-Output "Failed to copy '$source' to '$target':"
+        Write-Output $_.Exception
+        Write-Output "Copying '$source' to '$target'...FAILED!"
+    }
 }
 
 function backup {
     Param([array]$folder_list)
 
     foreach($folder in $folder_list) {
-        do_copy "$SOURCE_DRIVE\$FOLDER_PATH\$folder" "$TARGET_DRIVE\$FOLDER_PATH\$folder"
+        rcopy "$(get_folder_path $folder)" "$TARGET_PATH\$folder"
+        Write-Output ""
     }
 }
 
-function check_source_target {
-    Param([string]$source, [string]$target)
-    if ($source.ToLower() -eq $target.ToLower()) {
-        Write-Output "ERROR: The source and target drives are the same. Please update this script or re-run it from the backup drive."
-        exit 1
-    }
-}
-
-check_source_target $SOURCE_DRIVE $TARGET_DRIVE
 Write-Output "################ BACKUP TOOL ################"
 Write-Output "This tool will backup the following folders:"
-foreach($folder in $FOLDERS) {
-    Write-Output "$SOURCE_DRIVE\$FOLDER_PATH\$folder -> $TARGET_DRIVE\$FOLDER_PATH\$folder"
+foreach($folder in $SOURCE_FOLDERS) {
+    Write-Output "$(get_folder_path $folder) -> $TARGET_PATH\$folder"
 }
 Write-Output ""
-Read-Host -Prompt "Press ENTER to continue or CTRL+C/close this window to exit" 
+confirm_continue
 Write-Output ""
 Write-Output "Starting backup..."
-backup $FOLDERS
+backup $SOURCE_FOLDERS
 exit 0

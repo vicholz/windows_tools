@@ -47,22 +47,6 @@
                 var ProtectYourPC = document.querySelector("#ProtectYourPC").value;
                 var NetworkLocation = document.querySelector("#NetworkLocation").value;
                 
-                var AutoLogin_Enabled = document.querySelector("#AutoLogin_Enabled");
-                var AutoLogin_Username = document.querySelector("#AutoLogin_Username").value;
-                var AutoLogin_Password = document.querySelector("#AutoLogin_Password").value;
-
-                var AutoLogon = "";
-                if (AutoLogin_Enabled.options[AutoLogin_Enabled.selectedIndex].value === "true"){
-                    AutoLogon = `<AutoLogon>
-                <Password>
-                    <Value>${AutoLogin_Password}</Value>
-                    <PlainText>true</PlainText>
-                </Password>
-                <Enabled>true</Enabled>
-                <Username>${AutoLogin_Username}</Username>
-            </AutoLogon>`;
-                }
-                
                 var LocalAccounts = "";
                 var FirstLogonCommands = "";
 
@@ -142,7 +126,6 @@
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            ${AutoLogon}
             <OOBE>
                 <HideEULAPage>${HideEULAPage}</HideEULAPage>
                 <HideOEMRegistrationScreen>${HideOEMRegistrationScreen}</HideOEMRegistrationScreen>
@@ -230,17 +213,6 @@
                     <option value="Home">Home</option>
                     <option value="Public">Public</option>
                 </select>
-            </div>
-            <hr>
-            <div id="autologin_options">
-                <label for="AutoLogin_Enabled">Enable AutoLogin?:</label>
-                <select id="AutoLogin_Enabled">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                </select>
-                <br>
-                <label for="AutoLogin_Username">Autologin Username:</label><input type="text" id="AutoLogin_Username" name="AutoLogin_Username" value="User"/><br>
-                <label for="AutoLogin_Password">Autologin Password:</label><input type="text" id="AutoLogin_Password" name="AutoLogin_Password" value=""/><br>
             </div>
             <hr>
             <div id="UserAccounts">

@@ -8,16 +8,16 @@
 					"PackageIdentifier": "GIMP.GIMP"
 				},
 				{
-					"PackageIdentifier": "KDE.Krita"
-				},
-				{
 					"PackageIdentifier": "GuinpinSoft.MakeMKV"
 				},
 				{
-					"PackageIdentifier": "Microsoft.Sysinternals.Autoruns"
+					"PackageIdentifier": "Inkscape.Inkscape"
 				},
 				{
-					"PackageIdentifier": "Inkscape.Inkscape"
+					"PackageIdentifier": "KDE.Krita"
+				},
+				{
+					"PackageIdentifier": "Microsoft.Sysinternals.Autoruns"
 				}
 			],
 			"SourceDetails": {

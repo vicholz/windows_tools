@@ -5,10 +5,10 @@
 		{
 			"Packages": [
 				{
-					"PackageIdentifier": "Valve.Steam"
+					"PackageIdentifier": "MoonlightGameStreamingProject.Moonlight"
 				},
 				{
-					"PackageIdentifier": "MoonlightGameStreamingProject.Moonlight"
+					"PackageIdentifier": "Valve.Steam"
 				}
 			],
 			"SourceDetails": {

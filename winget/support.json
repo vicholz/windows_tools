@@ -5,10 +5,10 @@
 		{
 			"Packages": [
 				{
-					"PackageIdentifier": "TeamViewer.TeamViewer"
+					"PackageIdentifier": "RealVNC.VNCServer"
 				},
 				{
-					"PackageIdentifier": "RealVNC.VNCServer"
+					"PackageIdentifier": "TeamViewer.TeamViewer"
 				}
 			],
 			"SourceDetails": {

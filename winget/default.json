@@ -32,9 +32,6 @@
 					"PackageIdentifier": "Microsoft.VCRedist.2010.x64"
 				},
 				{
-					"PackageIdentifier": "7zip.7zip"
-				},
-				{
 					"PackageIdentifier": "Google.Chrome"
 				},
 				{

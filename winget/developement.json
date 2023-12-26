@@ -35,6 +35,12 @@
 				},
 				{
 					"PackageIdentifier" : "Python.Python.3.12"
+				},
+				{
+					"PackageIdentifier" : "Git.Git"
+				},
+				{
+					"PackageIdentifier" : "GitHub.cli"
 				}
 			],
 			"SourceDetails" : 

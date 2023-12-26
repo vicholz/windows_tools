@@ -1,119 +1,119 @@
 {
-	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2023-12-25T20:37:02.177-00:00",
-	"Sources" : 
-	[
+	"$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate": "2023-12-25T20:37:02.177-00:00",
+	"Sources": [
 		{
-			"Packages" : 
-			[
+			"Packages": [
 				{
-					"PackageIdentifier" : "Bitwarden.Bitwarden"
+					"PackageIdentifier": "Microsoft.VCRedist.2015+.x64"
 				},
 				{
-					"PackageIdentifier" : "7zip.7zip"
+					"PackageIdentifier": "Microsoft.VCRedist.2010.x64"
 				},
 				{
-					"PackageIdentifier" : "BleachBit.BleachBit"
+					"PackageIdentifier": "Microsoft.VCRedist.2010.x64"
 				},
 				{
-					"PackageIdentifier" : "GIMP.GIMP"
+					"PackageIdentifier": "Microsoft.UI.Xaml"
 				},
 				{
-					"PackageIdentifier" : "KDE.Krita"
+					"PackageIdentifier": "Bitwarden.Bitwarden"
 				},
 				{
-					"PackageIdentifier" : "GuinpinSoft.MakeMKV"
+					"PackageIdentifier": "7zip.7zip"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.Sysinternals.Autoruns"
+					"PackageIdentifier": "BleachBit.BleachBit"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.VisualStudioCode.CLI"
+					"PackageIdentifier": "GIMP.GIMP"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.DevHome"
+					"PackageIdentifier": "KDE.Krita"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+					"PackageIdentifier": "GuinpinSoft.MakeMKV"
 				},
 				{
-					"PackageIdentifier" : "Mozilla.Firefox"
+					"PackageIdentifier": "Microsoft.Sysinternals.Autoruns"
 				},
 				{
-					"PackageIdentifier" : "Valve.Steam"
+					"PackageIdentifier": "Microsoft.VisualStudioCode.CLI"
 				},
 				{
-					"PackageIdentifier" : "TeamViewer.TeamViewer"
+					"PackageIdentifier": "Microsoft.DevHome"
 				},
 				{
-					"PackageIdentifier" : "WinMerge.WinMerge"
+					"PackageIdentifier": "Microsoft.WindowsTerminal"
 				},
 				{
-					"PackageIdentifier" : "DupeGuru.DupeGuru"
+					"PackageIdentifier": "Mozilla.Firefox"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.VCRedist.2010.x64"
+					"PackageIdentifier": "Valve.Steam"
 				},
 				{
-					"PackageIdentifier" : "7zip.7zip"
+					"PackageIdentifier": "TeamViewer.TeamViewer"
 				},
 				{
-					"PackageIdentifier" : "Inkscape.Inkscape"
+					"PackageIdentifier": "WinMerge.WinMerge"
 				},
 				{
-					"PackageIdentifier" : "Python.Launcher"
+					"PackageIdentifier": "DupeGuru.DupeGuru"
 				},
 				{
-					"PackageIdentifier" : "MoonlightGameStreamingProject.Moonlight"
+					"PackageIdentifier": "7zip.7zip"
 				},
 				{
-					"PackageIdentifier" : "RealVNC.VNCServer"
+					"PackageIdentifier": "Inkscape.Inkscape"
 				},
 				{
-					"PackageIdentifier" : "Google.Chrome"
+					"PackageIdentifier": "Python.Launcher"
 				},
 				{
-					"PackageIdentifier" : "GoLang.Go"
+					"PackageIdentifier": "MoonlightGameStreamingProject.Moonlight"
 				},
 				{
-					"PackageIdentifier" : "TheDocumentFoundation.LibreOffice"
+					"PackageIdentifier": "RealVNC.VNCServer"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.VCRedist.2015+.x64"
+					"PackageIdentifier": "Google.Chrome"
 				},
 				{
-					"PackageIdentifier" : "RealVNC.VNCViewer"
+					"PackageIdentifier": "GoLang.Go"
 				},
 				{
-					"PackageIdentifier" : "VideoLAN.VLC"
+					"PackageIdentifier": "TheDocumentFoundation.LibreOffice"
 				},
 				{
-					"PackageIdentifier" : "Foxit.FoxitReader"
+					"PackageIdentifier": "RealVNC.VNCViewer"
 				},
 				{
-					"PackageIdentifier" : "valinet.ExplorerPatcher"
+					"PackageIdentifier": "VideoLAN.VLC"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.VisualStudioCode"
+					"PackageIdentifier": "Foxit.FoxitReader"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.VCRedist.2010.x64"
+					"PackageIdentifier": "valinet.ExplorerPatcher"
 				},
 				{
-					"PackageIdentifier" : "Python.Python.3.12"
+					"PackageIdentifier": "Microsoft.VisualStudioCode"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.PowerToys"
+					"PackageIdentifier": "Python.Python.3.12"
+				},
+				{
+					"PackageIdentifier": "Microsoft.PowerToys"
 				}
 			],
-			"SourceDetails" : 
-			{
-				"Argument" : "https://cdn.winget.microsoft.com/cache",
-				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
-				"Name" : "winget",
-				"Type" : "Microsoft.PreIndexed.Package"
+			"SourceDetails": {
+				"Argument": "https://cdn.winget.microsoft.com/cache",
+				"Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name": "winget",
+				"Type": "Microsoft.PreIndexed.Package"
 			}
 		}
 	],
-	"WinGetVersion" : "1.7.3481-preview"
+	"WinGetVersion": "1.7.3481-preview"
 }

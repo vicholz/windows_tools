@@ -47,9 +47,6 @@
 					"PackageIdentifier": "Foxit.FoxitReader"
 				},
 				{
-					"PackageIdentifier": "valinet.ExplorerPatcher"
-				},
-				{
 					"PackageIdentifier": "Microsoft.VCRedist.2010.x64"
 				},
 				{

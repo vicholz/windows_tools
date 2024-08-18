@@ -1,7 +1,8 @@
 # Various Windows Tools
 
-## Debloat Tools
+## Other Tools
 * [Win11Debloat](https://github.com/Raphire/Win11Debloat)
+* [WinUtil](https://github.com/ChrisTitusTech/winutil)
 
 ## PowerShell
 
